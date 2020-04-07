@@ -7,6 +7,8 @@ before_install:
 
 scripts:
   - docker run -e CI=true hakunamatata007/react-test npm test
+  - echo $AWS_ACCESS_KEY
+  - echo $AWS_SECRET_KEY
 
 after_success:
   - docker build -t hakunamatata007/multi-client ./client
