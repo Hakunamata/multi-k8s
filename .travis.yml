@@ -23,8 +23,8 @@ after_success:
 
 echo ----------------
 echo ENV VAariables
-echo ACCESS KEY -  $AWS_ACCESS_KEY
-echo SECRET KEY - $AWS_SECRET_KEY
+echo "$AWS_ACCESS_KEY"
+echo "$AWS_SECRET_KEY"
 echo -----------------------------
 
 deploy:
