@@ -9,6 +9,7 @@ scripts:
   - docker run -e CI=true hakunamatata007/react-test npm test
 
 after_success:
+  - echo DEPLOYMENT ----------------
   - docker build -t hakunamatata007/multi-client ./client
   - docker build -t hakunamatata007/multi-nginx ./nginx
   - docker build -t hakunamatata007/multi-server ./server
@@ -31,6 +32,6 @@ deploy:
   on:
     branch: master
   access_key_id:
-    secure: "AKIA4RGIPUR72MIDIVV6"
+    secure: AKIAIAMJHRZZRFKP6M7Q
   secret_access_key:
     secure: "$AWS_SECRET_KEY"
