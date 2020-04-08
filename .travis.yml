@@ -2,13 +2,18 @@ sudo: required
 services:
   - docker
 
+env:
+  global:
+    - access_key_id:
+        secure: AKIAIQFWGL67KIENPLMA
+    - secret_access_key:
+        secure: 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
+
 before_install:
   - docker build -t hakunamatata007/react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
   - docker run -e CI=true hakunamatata007/react-test npm test
-  - echo $AWS_ACCESS_KEY
-  - echo $AWS_SECRET_KEY
 
 after_success:
   - docker build -t hakunamatata007/multi-client ./client
@@ -32,7 +37,5 @@ deploy:
   bucket_path: multi-docker
   on:
     branch: master
-  access_key_id:
-    secure: $AWS_ACCESS_KEY
-  secret_access_key:
-    secure: '$AWS_SECRET_KEY'
+  access_key_id: env.access_key_id
+  secret_access_key: env.secret_access_key
