@@ -32,4 +32,4 @@ deploy:
     branch: master
   access_key_id: AKIA4RGIPUR72MIDIVV6
   secret_access_key:
-    secure: '$AWS_SECRET_KEY'
+    secure: $AWS_SECRET_KEY
