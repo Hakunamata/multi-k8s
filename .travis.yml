@@ -10,7 +10,7 @@ scripts:
 
 after_success:
   - echo DEPLOYMENT ----------------
-  - echo ${AWS_SECRET_KEY_ROOT}
+  - echo $(AWS_SECRET_KEY_ROOT)
   - docker build -t hakunamatata007/multi-client ./client
   #- docker build -t hakunamatata007/multi-nginx ./nginx
   #- docker build -t hakunamatata007/multi-server ./server
