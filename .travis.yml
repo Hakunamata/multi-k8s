@@ -2,6 +2,13 @@ sudo: required
 services:
   - docker
 
+env:
+  global:
+    - access_key:
+        secure: AKIAIQFWGL67KIENPLMA
+    - secret_key:
+        secure: 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
+
 before_install:
   - docker build -t hakunamatata007/react-test -f ./client/Dockerfile.dev ./client
 
@@ -30,5 +37,5 @@ deploy:
   bucket_path: multi-docker
   on:
     branch: master
-  access_key_id: ${access_key}
-  secret_access_key: ${secret_key}
+  access_key_id: $ACCESS_KEY
+  secret_access_key: $SECRET_KEY
