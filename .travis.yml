@@ -10,18 +10,18 @@ scripts:
 
 after_success:
   - echo DEPLOYMENT ----------------
-  - echo $AWS_SECRET_KEY_ROOT
+  - echo ${AWS_SECRET_KEY_ROOT}
   - docker build -t hakunamatata007/multi-client ./client
-  - docker build -t hakunamatata007/multi-nginx ./nginx
-  - docker build -t hakunamatata007/multi-server ./server
-  - docker build -t hakunamatata007/multi-worker ./worker
+  #- docker build -t hakunamatata007/multi-nginx ./nginx
+  #- docker build -t hakunamatata007/multi-server ./server
+  #- docker build -t hakunamatata007/multi-worker ./worker
   # login to the docker cli
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Push images to docker hub
   - docker push hakunamatata007/multi-client
-  - docker push hakunamatata007/multi-nginx
-  - docker push hakunamatata007/multi-server
-  - docker push hakunamatata007/multi-worker
+  #- docker push hakunamatata007/multi-nginx
+  #- docker push hakunamatata007/multi-server
+  #- docker push hakunamatata007/multi-worker
 
 deploy:
   provider: elasticbeanstalk
