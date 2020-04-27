@@ -1,7 +1,7 @@
 version: '3'
 services:
   postgres:
-    image: 'postgres:latest'
+    image: 'postgres:9.5.18'
   redis:
     image: 'redis:latest'
   nginx:
@@ -13,7 +13,7 @@ services:
       - '3050:80'
   api:
     build:
-      dockerfile: DockerFile.dev
+      dockerfile: Dockerfile.dev
       context: ./server
     volumes:
       - /app/node_modules
@@ -24,7 +24,7 @@ services:
       - PGUSER=postgres
       - PGHOST=postgres
       - PGDATABASE=postgres
-      - PGPASSWORD=postgres_password
+      - PGPASSWORD=123456
       - PGPORT=5432
   client:
     build:
@@ -34,8 +34,11 @@ services:
       - /app/node_modules
       - ./client:/app
   worker:
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
     build:
-      dockerfile: DockerFile.dev
+      dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
       - /app/node_modules
